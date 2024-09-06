@@ -17,6 +17,7 @@ import Attendance from './Attendance';
 import LeaveManagement from './LeaveManagement';
 import Payroll from './Payroll';
 import Reports from './Reports';
+import Header  from '../Header/Header';
 
 const Dashboard = () => {
   const navItems = [
@@ -27,7 +28,7 @@ const Dashboard = () => {
     { path: 'payroll', name: 'Payroll', icon: <FaMoneyBillWave /> },
     { path: 'reports', name: 'Reports', icon: <FaChartBar /> },
   ];
-
+  
   return (
     <div className="dashboard">
       <aside className="sidebar">
@@ -54,7 +55,7 @@ const Dashboard = () => {
         </div>
       </aside>
       <main className="main-content">
-        <header className="main-header">
+        {/* <header className="main-header">
           <h2>HR Management System</h2>
           <div className="user-actions">
             <button className="icon-btn"><FaBell /><span className="notification-badge">3</span></button>
@@ -68,7 +69,7 @@ const Dashboard = () => {
               />
             </div>
           </div>
-        </header>
+        </header> */}
         <div className="content-area">
           <Routes>
             <Route

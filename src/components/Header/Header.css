@@ -1,0 +1,18 @@
+header{
+    position: absolute;
+    top: -65px;
+    left: 0px;
+    margin-top: 66px;
+    background-color: #f7f7f7;
+    width: 100vw;
+    height: 10vh;
+    z-index: 100;
+    box-shadow: 5px 5px 10px;
+    border-radius: 10px;
+}
+
+header img{
+    width: 10%;
+    height: 80%;
+    margin: 10px;
+}

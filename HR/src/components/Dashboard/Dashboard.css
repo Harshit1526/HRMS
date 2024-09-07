@@ -74,7 +74,11 @@ body {
 }
 
 .sidebar-footer {
-  padding: 20px;
+  /* aligned logout btn properly */
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .logout-btn {
@@ -168,7 +172,7 @@ body {
 
 .content-area {
   width: 110vh;
-  padding: 30px;
+  padding: 85px;
   overflow-y: auto;
 }
 

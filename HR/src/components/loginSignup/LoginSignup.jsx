@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './LoginSignup.css';
+import Dashboard from '../Dashboard/Dashboard';
 
 import user_icon from '../Assests/person.png';
 import email_icon from '../Assests/email.png';
@@ -13,6 +14,7 @@ const LoginSignup = () => {
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState({});
     const [successMessage, setSuccessMessage] = useState('');
+    const navigate = useNavigate();
 
     const validateForm = () => {
         const errors = {};
@@ -32,19 +34,19 @@ const LoginSignup = () => {
 
     const handleSignUp = async () => {
         const validationErrors = validateForm();
+
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
             return;
         }
-
         // Simulate successful signup
-        setSuccessMessage('Signup successful! You can now proceed to the Dashboard.');
+        setSuccessMessage('Signup successful! You can now proceed to the Login');
         setErrors({});
         setUsername('');
         setEmail('');
         setPassword('');
     };
-
+    
     const handleLogin = async () => {
         const validationErrors = validateForm();
         if (Object.keys(validationErrors).length > 0) {
@@ -52,8 +54,12 @@ const LoginSignup = () => {
             return;
         }
 
+
+        
         // Simulate successful login
-        setSuccessMessage('Login successful! You can now proceed to the Dashboard.');
+        // if user validte navigate to dashboard
+        navigate("</Dashboard>");
+        // setSuccessMessage('Login successful! You can now proceed to the Dashboard.');
         setErrors({});
         setUsername('');
         setEmail('');
@@ -68,6 +74,7 @@ const LoginSignup = () => {
             </div>
             <div className="inputs">
                 {!isLogin && (
+                    <div>
                     <div className='input'>
                         <img src={user_icon} alt="User Icon" />
                         <input
@@ -76,6 +83,7 @@ const LoginSignup = () => {
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
                         />
+                    </div>
                         {errors.username && <p className="error">{errors.username}</p>}
                     </div>
                 )}
@@ -88,8 +96,8 @@ const LoginSignup = () => {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                     />
-                    {errors.email && <p className="error">{errors.email}</p>}
                 </div>
+                    {errors.email && <p className="error">{errors.email}</p>}
 
                 <div className="input">
                     <img src={password_icon} alt="Password Icon" />
@@ -122,6 +130,7 @@ const LoginSignup = () => {
                         setEmail('');
                         setPassword('');
                     }}
+
                 >
                     {isLogin ? "Sign Up" : "Login"}
                 </div>

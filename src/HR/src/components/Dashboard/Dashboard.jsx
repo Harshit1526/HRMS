@@ -17,7 +17,6 @@ import Attendance from './Attendance';
 import LeaveManagement from './LeaveManagement';
 import Payroll from './Payroll';
 import Reports from './Reports';
-import Header  from '../Header/Header';
 
 const Dashboard = () => {
   const navItems = [

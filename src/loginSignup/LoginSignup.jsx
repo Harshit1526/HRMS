@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './LoginSignup.css';
-import Dashboard from '../Dashboard/Dashboard';
+import Dashboard from '../HR/src/components/Dashboard/Dashboard';
 
-import user_icon from '../Assests/person.png';
-import email_icon from '../Assests/email.png';
-import password_icon from '../Assests/password.png';
+import user_icon from '../HR/src/components/Assests/person.png';
+import email_icon from '../HR/src/components/Assests/email.png';
+import password_icon from '../HR/src/components/Assests/password.png';
 
 const LoginSignup = () => {
     const [isLogin, setIsLogin] = useState(true);
@@ -58,7 +58,7 @@ const LoginSignup = () => {
         
         // Simulate successful login
         // if user validte navigate to dashboard
-        navigate("</Dashboard>");
+        navigate("/dashboard"); 
         // setSuccessMessage('Login successful! You can now proceed to the Dashboard.');
         setErrors({});
         setUsername('');

@@ -3,47 +3,12 @@ import './Payroll.css';
 
 const Payroll = () => {
   const [payrollRecords, setPayrollRecords] = useState([
-    { id: 1, salary: 5000, status: 'Paid' },
-    { id: 2, salary: 6000, status: 'Paid' },
-    { id: 3, salary: 4000, status: 'Pending' },
+    { id: 1, month: 'Jan', hoursWorked: 200, salary: 5000, status: 'Paid' },
+    { id: 2, month: 'Feb', hoursWorked: 220, salary: 6000, status: 'Paid' },
+    { id: 3, month: 'March', hoursWorked: 180, salary: 4000, status: 'Pending' },
+    { id: 3, month: 'April', hoursWorked: 190, salary: 4000, status: 'Pending' },
   ]);
 
-  const [formVisible, setFormVisible] = useState(false);
-  const [payroll, setPayroll] = useState({
-    id: '',
-    employeeName: '',
-    position: '',
-    salary: '',
-    status: 'Pending',
-  });
-
-  const handleAddPayroll = (e) => {
-    e.preventDefault();
-    const payrollRecord = {
-      ...newPayroll,
-      id: parseInt(newPayroll.id, 10),
-      salary: parseFloat(newPayroll.salary),
-    };
-    setPayrollRecords([...payrollRecords, newPayrollRecord]);
-    setFormVisible(false);
-    setNewPayroll({
-      id: '',
-      employeeName: '',
-      position: '',
-      salary: '',
-
-      status: 'Pending',
-    });
-  };
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setNewPayroll({ ...newPayroll, [name]: value });
-  };
-
-  const toggleFormVisibility = () => {
-    setFormVisible(!formVisible);
-  };
 
   return (
     <div className="payroll-dashboard">
@@ -55,69 +20,21 @@ const Payroll = () => {
         </div>
         <div className="summary-card">
           <h3>Hours worked</h3>
-          <p>{payrollRecords.length}</p>
+          <p>{payrollRecords[payrollRecords.length-1].hoursWorked}</p>
         </div>
         <div className="summary-card">
           <h3>Pending Approvals</h3>
           <p>{payrollRecords.filter(record => record.status === 'Pending').length}</p>
         </div>
       </div>
-      <button className="toggle-form-btn" onClick={toggleFormVisibility}>
-        {formVisible ? 'Hide Payroll Form' : 'Add Payroll'}
-      </button>
-      {formVisible && (
-        <form className="payroll-form" onSubmit={handleAddPayroll}>
-          <input
-            type="number"
-            name="id"
-            value={newPayroll.id}
-            onChange={handleInputChange}
-            placeholder="Employee ID"
-            required
-          />
-          <input
-            type="text"
-            name="employeeName"
-            value={newPayroll.employeeName}
-            onChange={handleInputChange}
-            placeholder="Employee Name"
-            required
-          />
-          <input
-            type="text"
-            name="position"
-            value={newPayroll.position}
-            onChange={handleInputChange}
-            placeholder="Position"
-            required
-          />
-          <input
-            type="number"
-            name="salary"
-            value={newPayroll.salary}
-            onChange={handleInputChange}
-            placeholder="Salary"
-            required
-          />
-          <select
-            name="status"
-            value={newPayroll.status}
-            onChange={handleInputChange}
-          >
-            <option value="Paid">Paid</option>
-            <option value="Pending">Pending</option>
-          </select>
-          <button type="submit">Add Payroll</button>
-        </form>
-      )}
+
+     
       <div className="payroll-details">
-        <h3>Employee Payroll Details</h3>
+        <h3>Payroll Details</h3>
         <table className="payroll-table">
           <thead>
             <tr>
-              <th>Employee ID</th>
-              <th>Employee Name</th>
-              <th>Position</th>
+              <th>Month</th>
               <th>Salary</th>
               <th>Status</th>
             </tr>
@@ -125,9 +42,7 @@ const Payroll = () => {
           <tbody>
             {payrollRecords.map((record) => (
               <tr key={record.id}>
-                <td>{record.id}</td>
-                <td>{record.employeeName}</td>
-                <td>{record.position}</td>
+                <td>{record.month}</td>
                 <td>${record.salary}</td>
                 <td className={`status ${record.status.toLowerCase()}`}>{record.status}</td>
               </tr>

@@ -117,17 +117,6 @@ const DashboardOverview = () => (
         </div>
       </div>
     </div>
-    <div className="dashboard-charts">
-      {/* Add charts or graphs here */}
-      <div className="chart">
-        <h3>Employee Distribution</h3>
-        {/* Add a pie chart component here */}
-      </div>
-      <div className="chart">
-        <h3>Attendance Trend</h3>
-        {/* Add a line chart component here */}
-      </div>
-    </div>
   </div>
 );
 

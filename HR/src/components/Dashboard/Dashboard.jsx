@@ -17,7 +17,9 @@ import Attendance from './Attendance';
 import LeaveManagement from './LeaveManagement';
 import Payroll from './Payroll';
 import Reports from './Reports';
-import Header  from '../Header/Header';
+import Boarding from './Onboarding'
+import Performance from './Performance';
+// import Header  from './Header/Header';
 
 const Dashboard = () => {
   const navItems = [
@@ -26,6 +28,8 @@ const Dashboard = () => {
     { path: 'attendance', name: 'Attendance', icon: <FaCalendarAlt /> },
     { path: 'leave', name: 'Leave Management', icon: <FaClipboardList /> },
     { path: 'payroll', name: 'Payroll', icon: <FaMoneyBillWave /> },
+    { path: 'onboarding', name: 'Onboarding', icon: <FaEnvelope /> },
+    {path: 'performance', name: 'Performance', icon: <FaBell />},
     { path: 'reports', name: 'Reports', icon: <FaChartBar /> },
   ];
   
@@ -80,6 +84,8 @@ const Dashboard = () => {
             <Route path="attendance" element={<Attendance />} />
             <Route path="leave" element={<LeaveManagement />} />
             <Route path="payroll" element={<Payroll />} />
+            <Route path="onboarding" element={<Boarding />} />
+            <Route path="performance" element={<Performance />} />
             <Route path="reports" element={<Reports />} />
           </Routes>
         </div>

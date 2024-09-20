@@ -1,0 +1,101 @@
+.admin-reports {
+  background-color: #f4f6f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  max-width: 1000px;
+  margin: 20px auto;
+}
+
+.admin-reports h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.report-filters {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.report-filters label {
+  margin: 10px 0;
+  color: #333;
+  font-weight: bold;
+}
+
+.report-filters select,
+.report-filters input {
+  padding: 10px;
+  width: 60%;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+}
+
+.generate-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.generate-btn:hover {
+  background-color: #45a049;
+}
+
+.generated-report {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.generated-report h3 {
+  text-align: center;
+  color: #3498db;
+  margin-bottom: 20px;
+}
+
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.report-table th,
+.report-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.report-table th {
+  background-color: #4CAF50;
+  color: white;
+  text-transform: uppercase;
+}
+
+.report-table td {
+  color: #333;
+}
+
+.report-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+@media (max-width: 768px) {
+  .report-filters select, .report-filters input {
+    width: 80%;
+  }
+
+  .report-table th, .report-table td {
+    padding: 10px;
+    font-size: 14px;
+  }
+}

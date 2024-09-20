@@ -17,9 +17,8 @@ import Attendance from './Attendance';
 import LeaveManagement from './LeaveManagement';
 import Payroll from './Payroll';
 import Reports from './Reports';
-import Boarding from './Onboarding'
+import Onboarding from './Onboarding';
 import Performance from './Performance';
-// import Header  from './Header/Header';
 
 const Dashboard = () => {
   const navItems = [
@@ -29,7 +28,7 @@ const Dashboard = () => {
     { path: 'leave', name: 'Leave Management', icon: <FaClipboardList /> },
     { path: 'payroll', name: 'Payroll', icon: <FaMoneyBillWave /> },
     { path: 'onboarding', name: 'Onboarding', icon: <FaEnvelope /> },
-    {path: 'performance', name: 'Performance', icon: <FaBell />},
+    { path: 'performance', name: 'Performance', icon: <FaBell /> },
     { path: 'reports', name: 'Reports', icon: <FaChartBar /> },
   ];
   
@@ -59,21 +58,6 @@ const Dashboard = () => {
         </div>
       </aside>
       <main className="main-content">
-        {/* <header className="main-header">
-          <h2>HR Management System</h2>
-          <div className="user-actions">
-            <button className="icon-btn"><FaBell /><span className="notification-badge">3</span></button>
-            <button className="icon-btn"><FaEnvelope /><span className="notification-badge">5</span></button>
-            <div className="user-info">
-              <span>John Doe</span>
-              <img
-                src="https://via.placeholder.com/40"
-                alt="User avatar"
-                className="avatar"
-              />
-            </div>
-          </div>
-        </header> */}
         <div className="content-area">
           <Routes>
             <Route
@@ -84,7 +68,7 @@ const Dashboard = () => {
             <Route path="attendance" element={<Attendance />} />
             <Route path="leave" element={<LeaveManagement />} />
             <Route path="payroll" element={<Payroll />} />
-            <Route path="onboarding" element={<Boarding />} />
+            <Route path="onboarding" element={<Onboarding />} />
             <Route path="performance" element={<Performance />} />
             <Route path="reports" element={<Reports />} />
           </Routes>

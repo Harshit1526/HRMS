@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import Header from '../../../../src/components/Header/Header';  
+import { Link, useNavigate } from 'react-router-dom'; 
 import './LoginSignup.css';
-
-import user_icon from '../Assests/person.png';
-import email_icon from '../Assests/email.png';
-import password_icon from '../Assests/password.png';
+import user_icon from '../HR/src/components/Assests/person.png';
+import email_icon from '../HR/src/components/Assests/email.png';
+import password_icon from '../HR/src/components/Assests/password.png';
 
 const LoginSignup = () => {
     const [isLogin, setIsLogin] = useState(true);
@@ -52,7 +50,17 @@ const LoginSignup = () => {
             setErrors(validationErrors);
             return;
         }
+
         navigate("/dashboard");
+
+
+
+        
+        // Simulate successful login
+        // if user validte navigate to dashboard
+        navigate("/dashboard"); 
+        // setSuccessMessage('Login successful! You can now proceed to the Dashboard.');
+
         setErrors({});
         setUsername('');
         setEmail('');
@@ -61,7 +69,6 @@ const LoginSignup = () => {
 
     return (
         <>
-            <Header /> {/* Add the Header component */}
             <div className='container'>
                 <div className="header">
                     <div className="text">{isLogin ? "Login" : "Sign Up"}</div>

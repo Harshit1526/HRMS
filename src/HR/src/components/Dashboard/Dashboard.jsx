@@ -43,7 +43,7 @@ const Dashboard = () => {
           {navItems.map((item) => (
             <NavLink
               key={item.path}
-              to={`/dashboard/${item.path}`}
+              to={`/hr_dashboard/${item.path}`}
               className={({ isActive }) => (isActive ? 'active' : '')}
             >
               {item.icon}

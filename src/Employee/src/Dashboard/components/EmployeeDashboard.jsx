@@ -8,8 +8,6 @@ import {
   FaChartBar,
   FaSignOutAlt,
   FaTachometerAlt,
-  FaBell,
-  FaEnvelope,
 } from 'react-icons/fa';
 import './EmployeeDashboard.css';
 import Attendance from './Attendance';
@@ -25,7 +23,7 @@ const EmployeeDashboard = () => {
     { path: 'payroll', name: 'Payroll', icon: <FaMoneyBillWave /> },
     { path: 'reports', name: 'Reports', icon: <FaChartBar /> },
   ];
-  
+
   return (
     <div className="dashboard">
       <aside className="sidebar">
@@ -51,32 +49,15 @@ const EmployeeDashboard = () => {
           </NavLink>
         </div>
       </aside>
+
       <main className="main-content">
-        {/* <header className="main-header">
-          <h2>HR Management System</h2>
-          <div className="user-actions">
-            <button className="icon-btn"><FaBell /><span className="notification-badge">3</span></button>
-            <button className="icon-btn"><FaEnvelope /><span className="notification-badge">5</span></button>
-            <div className="user-info">
-              <span>John Doe</span>
-              <img
-                src="https://via.placeholder.com/40"
-                alt="User avatar"
-                className="avatar"
-              />
-            </div>
-          </div>
-        </header> */}
         <div className="content-area">
           <Routes>
-            <Route
-              path=""
-              element={<DashboardOverview />}
-            />
-            <Route path="attendance" element={<Attendance />} />
-            <Route path="leave" element={<LeaveManagement />} />
-            <Route path="payroll" element={<Payroll />} />
-            <Route path="reports" element={<Reports />} />
+            <Route path="/" element={<DashboardOverview />} />
+            <Route path="/attendance" element={<Attendance />} />
+            <Route path="/leave" element={<LeaveManagement />} />
+            <Route path="/payroll" element={<Payroll />} />
+            <Route path="/reports" element={<Reports />} />
           </Routes>
         </div>
       </main>

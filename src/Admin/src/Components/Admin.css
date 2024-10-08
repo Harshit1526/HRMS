@@ -2,26 +2,69 @@
 .admin-dashboard-container {
   max-width: 1200px;
   margin: 50px auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 25px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.admin-dashboard-container::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: -20%;
+  width: 400px;
+  height: 400px;
+  background: rgba(0, 123, 255, 0.2);
+  border-radius: 50%;
+  z-index: -1;
+  animation: floating 10s ease-in-out infinite;
+}
+
+.admin-dashboard-container::after {
+  content: '';
+  position: absolute;
+  bottom: -20%;
+  left: -20%;
+  width: 400px;
+  height: 400px;
+  background: rgba(0, 123, 255, 0.1);
+  border-radius: 50%;
+  z-index: -1;
+  animation: floating 15s ease-in-out infinite;
 }
 
 /* Admin Panel Heading */
 .admin-heading {
-  font-size: 2.5rem;
-  color: #333;
-  margin-bottom: 30px;
-  font-weight: bold;
+  font-size: 3rem;
+  color: #2c3e50;
+  margin-bottom: 40px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+}
+
+.admin-heading::before {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background-color: #2980b9;
 }
 
 /* Admin Grid Layout */
 .admin-dashboard-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  position: relative;
 }
 
 /* Admin Links */
@@ -30,35 +73,96 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px;
-  background-color: #3498db;
-  color: white;
+  padding: 40px;
+  background-color: #ffffff;
+  color: #333;
   text-decoration: none;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, background-color 0.3s ease;
-  font-size: 1.2rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  font-size: 1.4rem;
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  position: relative;
+}
+
+.admin-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(0, 123, 255, 0.1), rgba(0, 123, 255, 0.2));
+  transform: skewX(-25deg);
+  transition: 0.5s all;
+}
+
+.admin-link:hover::before {
+  left: 150%;
+}
+
+.admin-link span {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  z-index: 1;
 }
 
 /* Icon Styling */
 .admin-icon {
-  font-size: 3rem;
-  margin-bottom: 10px;
+  font-size: 3.5rem;
+  margin-bottom: 15px;
+  color: #2980b9;
+  z-index: 1;
 }
 
 /* Hover Effect */
 .admin-link:hover {
-  background-color: #2980b9;
+  background-color: #f0f8ff;
   transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
 }
 
 /* Responsive Design */
+@media (max-width: 1024px) {
+  .admin-dashboard-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .admin-link {
+    padding: 25px;
+    font-size: 1.2rem;
+  }
+}
+
 @media (max-width: 768px) {
   .admin-dashboard-grid {
     grid-template-columns: 1fr;
   }
 
   .admin-link {
+    padding: 20px;
     font-size: 1rem;
+  }
+
+  .admin-icon {
+    font-size: 3rem;
+  }
+}
+
+/* Additional Styling */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f3f4f7;
+}
+
+@keyframes floating {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
   }
 }

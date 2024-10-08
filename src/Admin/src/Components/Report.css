@@ -1,101 +1,150 @@
 .admin-reports {
-  background-color: #f4f6f9;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  max-width: 1000px;
-  margin: 20px auto;
+  background-color: #ffffff;
+  padding: 25px; /* Reduced padding */
+  border-radius: 8px; /* Reduced border-radius */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  max-width: 700px; /* Reduced width */
+  margin: 20px auto; /* Reduced margin */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .admin-reports h2 {
   text-align: center;
-  color: #333;
-  margin-bottom: 20px;
+  color: #333333;
+  font-size: 20px; /* Reduced font size */
+  font-weight: 600;
+  margin-bottom: 15px; /* Reduced margin */
+  position: relative;
+  padding-bottom: 5px; /* Reduced padding */
+}
+
+.admin-reports h2::after {
+  content: "";
+  display: block;
+  width: 40px; /* Reduced width */
+  height: 2px; /* Reduced height */
+  background-color: #3498db;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .report-filters {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 30px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px; /* Reduced gap */
+  margin-bottom: 20px; /* Reduced margin */
+  align-items: flex-end;
+}
+
+.filter-item {
+  flex: 2;
+  min-width: 180px; /* Minimum width for filter items */
 }
 
 .report-filters label {
-  margin: 10px 0;
-  color: #333;
-  font-weight: bold;
+  color: #555;
+  font-weight: 600;
+  font-size: 12px; /* Reduced font size */
 }
 
 .report-filters select,
 .report-filters input {
-  padding: 10px;
-  width: 60%;
-  margin-bottom: 15px;
-  border-radius: 5px;
+  padding: 8px; /* Reduced padding */
+  width: 100%;
+  border-radius: 4px; /* Reduced border-radius */
   border: 1px solid #ddd;
-  font-size: 16px;
+  font-size: 12px; /* Reduced font size */
+  background-color: #f4f6f9;
+  transition: all 0.3s ease;
+}
+
+.report-filters select:focus,
+.report-filters input:focus {
+  border-color: #3498db;
+  outline: none;
 }
 
 .generate-btn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px 20px;
+  background: linear-gradient(135deg, #3498db, #2ecc71);
+  color: #ffffff;
+  padding: 8px 15px; /* Reduced padding */
   border: none;
-  border-radius: 5px;
+  border-radius: 4px; /* Reduced border-radius */
   cursor: pointer;
+  font-weight: 600;
+  font-size: 12px; /* Reduced font size */
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .generate-btn:hover {
-  background-color: #45a049;
+  background: linear-gradient(135deg, #2ecc71, #3498db);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.error-message {
+  color: #e74c3c;
+  text-align: center;
+  font-size: 12px; /* Reduced font size */
+  margin-bottom: 10px; /* Reduced margin */
 }
 
 .generated-report {
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: #fafafa;
+  padding: 15px; /* Reduced padding */
+  border-radius: 6px; /* Reduced border-radius */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 15px; /* Reduced margin */
 }
 
 .generated-report h3 {
   text-align: center;
-  color: #3498db;
-  margin-bottom: 20px;
+  color: #2c3e50;
+  font-size: 18px; /* Reduced font size */
+  margin-bottom: 10px; /* Reduced margin */
+  font-weight: 600;
+}
+
+.generated-report p {
+  text-align: center;
+  color: #7f8c8d;
+  font-size: 12px; /* Reduced font size */
+  margin-bottom: 10px; /* Reduced margin */
 }
 
 .report-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
+  margin-top: 10px; /* Reduced margin */
 }
 
 .report-table th,
 .report-table td {
-  padding: 12px;
+  padding: 8px; /* Reduced padding */
   text-align: left;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #f2f2f2;
+  font-size: 12px; /* Reduced font size */
 }
 
 .report-table th {
-  background-color: #4CAF50;
-  color: white;
+  background: #3498db;
+  color: #ffffff;
   text-transform: uppercase;
+  font-weight: 600;
+  font-size: 11px; /* Reduced font size */
 }
 
 .report-table td {
   color: #333;
 }
 
-.report-table tr:nth-child(even) {
-  background-color: #f2f2f2;
+.report-table tr:hover {
+  background-color: #f1f1f1;
 }
 
-@media (max-width: 768px) {
-  .report-filters select, .report-filters input {
-    width: 80%;
-  }
-
-  .report-table th, .report-table td {
-    padding: 10px;
-    font-size: 14px;
-  }
+.report-table tr:nth-child(even) {
+  background-color: #fafafa;
 }

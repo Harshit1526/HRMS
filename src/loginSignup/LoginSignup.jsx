@@ -58,7 +58,7 @@ const LoginSignup = () => {
         
         // Simulate successful login
         // if user validte navigate to dashboard
-        navigate("/dashboard"); 
+        navigate("/hr_dashboard"); 
         // setSuccessMessage('Login successful! You can now proceed to the Dashboard.');
 
         setErrors({});

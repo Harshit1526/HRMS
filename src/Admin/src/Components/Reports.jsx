@@ -6,8 +6,15 @@ const AdminReports = () => {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [generatedReport, setGeneratedReport] = useState(null);
+  const [error, setError] = useState('');
 
   const handleGenerateReport = () => {
+    if (!reportType || !startDate || !endDate) {
+      setError('Please fill out all fields to generate a report.');
+      return;
+    }
+    setError('');
+
     // Simulate generating a report based on the selected type and date range
     const report = {
       type: reportType,
@@ -25,38 +32,46 @@ const AdminReports = () => {
     <div className="admin-reports">
       <h2>Generate Reports</h2>
       <div className="report-filters">
-        <label htmlFor="reportType">Report Type:</label>
-        <select
-          id="reportType"
-          value={reportType}
-          onChange={(e) => setReportType(e.target.value)}
-        >
-          <option value="">Select a report type</option>
-          <option value="attendance">Attendance Report</option>
-          <option value="payroll">Payroll Report</option>
-          <option value="leave">Leave Report</option>
-        </select>
+        <div className="filter-item">
+          <label htmlFor="reportType">Report Type:</label>
+          <select
+            id="reportType"
+            value={reportType}
+            onChange={(e) => setReportType(e.target.value)}
+          >
+            <option value="">Select a report type</option>
+            <option value="attendance">Attendance Report</option>
+            <option value="payroll">Payroll Report</option>
+            <option value="leave">Leave Report</option>
+          </select>
+        </div>
 
-        <label htmlFor="startDate">Start Date:</label>
-        <input
-          type="date"
-          id="startDate"
-          value={startDate}
-          onChange={(e) => setStartDate(e.target.value)}
-        />
+        <div className="filter-item">
+          <label htmlFor="startDate">Start Date:</label>
+          <input
+            type="date"
+            id="startDate"
+            value={startDate}
+            onChange={(e) => setStartDate(e.target.value)}
+          />
+        </div>
 
-        <label htmlFor="endDate">End Date:</label>
-        <input
-          type="date"
-          id="endDate"
-          value={endDate}
-          onChange={(e) => setEndDate(e.target.value)}
-        />
+        <div className="filter-item">
+          <label htmlFor="endDate">End Date:</label>
+          <input
+            type="date"
+            id="endDate"
+            value={endDate}
+            onChange={(e) => setEndDate(e.target.value)}
+          />
+        </div>
 
         <button onClick={handleGenerateReport} className="btn generate-btn">
           Generate Report
         </button>
       </div>
+
+      {error && <p className="error-message">{error}</p>}
 
       {generatedReport && (
         <div className="generated-report">

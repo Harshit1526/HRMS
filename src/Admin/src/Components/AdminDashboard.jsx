@@ -1,7 +1,13 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './Admin.css';
-import { FaUserCog, FaMoneyCheckAlt, FaCalendarCheck, FaFileAlt, FaChartBar } from 'react-icons/fa';
+import React from "react";
+import { Link } from "react-router-dom";
+import "./Admin.css";
+import {
+  FaUserCog,
+  FaMoneyCheckAlt,
+  FaCalendarCheck,
+  FaFileAlt,
+  FaChartBar,
+} from "react-icons/fa";
 
 const AdminDashboard = () => {
   return (

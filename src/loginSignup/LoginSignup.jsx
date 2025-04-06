@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; 
 import './LoginSignup.css';
-import Dashboard from '../HR/src/components/Dashboard/Dashboard';
-
 import user_icon from '../HR/src/components/Assests/person.png';
 import email_icon from '../HR/src/components/Assests/email.png';
 import password_icon from '../HR/src/components/Assests/password.png';
@@ -39,14 +37,13 @@ const LoginSignup = () => {
             setErrors(validationErrors);
             return;
         }
-        // Simulate successful signup
         setSuccessMessage('Signup successful! You can now proceed to the Login');
         setErrors({});
         setUsername('');
         setEmail('');
         setPassword('');
     };
-    
+
     const handleLogin = async () => {
         const validationErrors = validateForm();
         if (Object.keys(validationErrors).length > 0) {
@@ -54,12 +51,16 @@ const LoginSignup = () => {
             return;
         }
 
+        navigate("/dashboard");
+
+
 
         
         // Simulate successful login
         // if user validte navigate to dashboard
-        navigate("/dashboard"); 
+        navigate("/hr_dashboard"); 
         // setSuccessMessage('Login successful! You can now proceed to the Dashboard.');
+
         setErrors({});
         setUsername('');
         setEmail('');
@@ -67,80 +68,81 @@ const LoginSignup = () => {
     };
 
     return (
-        <div className='container'>
-            <div className="header">
-                <div className="text">{isLogin ? "Login" : "Sign Up"}</div>
-                <div className="Underline"></div>
-            </div>
-            <div className="inputs">
-                {!isLogin && (
-                    <div>
-                    <div className='input'>
-                        <img src={user_icon} alt="User Icon" />
+        <>
+            <div className='container'>
+                <div className="header">
+                    <div className="text">{isLogin ? "Login" : "Sign Up"}</div>
+                    <div className="Underline"></div>
+                </div>
+                <div className="inputs">
+                    {!isLogin && (
+                        <div>
+                        <div className='input'>
+                            <img src={user_icon} alt="User Icon" />
+                            <input
+                                type="text"
+                                placeholder="Username"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                            />
+                        </div>
+                            {errors.username && <p className="error">{errors.username}</p>}
+                        </div>
+                    )}
+
+                    <div className="input">
+                        <img src={email_icon} alt="Email Icon" />
                         <input
-                            type="text"
-                            placeholder="Username"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
+                            type="email"
+                            placeholder="Email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                         />
                     </div>
-                        {errors.username && <p className="error">{errors.username}</p>}
+                        {errors.email && <p className="error">{errors.email}</p>}
+
+                    <div className="input">
+                        <img src={password_icon} alt="Password Icon" />
+                        <input
+                            type="password"
+                            placeholder="Password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </div>
+                    {errors.password && <p className="error">{errors.password}</p>}
+                    {errors.server && <p className="error">{errors.server}</p>}
+                    {successMessage && <p className="success">{successMessage}</p>}
+                </div>
+                <div className="forgot-Password">{isLogin ? "Forgot Password?" : ""}</div>
+                <div className="submit-container">
+                    <div
+                        className="submit"
+                        onClick={isLogin ? handleLogin : handleSignUp}
+                    >
+                        {isLogin ? "Login" : "Sign Up"}
+                    </div>
+                    <div
+                        className="submit"
+                        onClick={() => {
+                            setIsLogin(!isLogin);
+                            setSuccessMessage('');
+                            setErrors({});
+                            setUsername('');
+                            setEmail('');
+                            setPassword('');
+                        }}
+                    >
+                        {isLogin ? "Sign Up" : "Login"}
+                    </div>
+                </div>
+                {successMessage && (
+                    <div className="dashboard-link">
+                        <Link to="/dashboard">Go to Dashboard</Link>
                     </div>
                 )}
-
-                <div className="input">
-                    <img src={email_icon} alt="Email Icon" />
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                </div>
-                    {errors.email && <p className="error">{errors.email}</p>}
-
-                <div className="input">
-                    <img src={password_icon} alt="Password Icon" />
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </div>
-                {errors.password && <p className="error">{errors.password}</p>}
-                {errors.server && <p className="error">{errors.server}</p>}
-                {successMessage && <p className="success">{successMessage}</p>}
             </div>
-            <div className="forgot-Password">{isLogin ? "Forgot Password?" : ""}</div>
-            <div className="submit-container">
-                <div
-                    className="submit"
-                    onClick={isLogin ? handleLogin : handleSignUp}
-                >
-                    {isLogin ? "Login" : "Sign Up"}
-                </div>
-                <div
-                    className="submit"
-                    onClick={() => {
-                        setIsLogin(!isLogin);
-                        setSuccessMessage('');
-                        setErrors({});
-                        setUsername('');
-                        setEmail('');
-                        setPassword('');
-                    }}
-
-                >
-                    {isLogin ? "Sign Up" : "Login"}
-                </div>
-            </div>
-            {successMessage && (
-                <div className="dashboard-link">
-                    <Link to="/dashboard">Go to Dashboard</Link>
-                </div>
-            )}
-        </div>
+        </>
     );
 };
 

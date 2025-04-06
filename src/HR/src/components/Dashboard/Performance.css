@@ -1,0 +1,115 @@
+/* Main container styling */
+.performance-management {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%);
+}
+
+/* Navigation styling */
+.performance-nav {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.performance-nav button {
+  background-color: #fff;
+  border: 2px solid #4a90e2; 
+  border-radius: 10px;
+  padding: 15px 30px;
+  margin: 0 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: #4a90e2; 
+}
+
+.performance-nav button:hover {
+  transform: translateY(-2px);
+  background-color: #e6f0fa;
+}
+
+.performance-nav button.active {
+  background-color: #4a90e2;
+  color: #fff;
+}
+
+.performance-nav .icon {
+  color: #4a90e2; 
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+/* Centering the icons */
+button .icon {
+  color: #4a90e2;
+  text-align: center;
+  display: inline-block;
+  margin-right: 0.3rem;
+}
+
+/* Content styling */
+.performance-content {
+  width: 90%;
+  max-width: 1200px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  margin-top: 20px;
+}
+
+/* Forms and tables inside the content */
+.goal-form, .feedback-form, .appraisal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input[type='text'], input[type='number'], input[type='date'], textarea {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+button {
+  background-color: #4a90e2;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #357ab7;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table th, table td {
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+table th {
+  background-color: #4a90e2;
+  color: #fff;
+}
+
+table tbody tr:hover {
+  background-color: #f5f5f5;
+}

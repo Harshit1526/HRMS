@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, NavLink } from 'react-router-dom';
+import { Routes, Route, NavLink, useNavigate } from 'react-router-dom';
 import {
   FaUsers,
   FaCalendarAlt,
@@ -16,6 +16,7 @@ import Payroll from './Payroll';
 import Reports from './Reports';
 
 const EmployeeDashboard = () => {
+  const navigate = useNavigate();
   const navItems = [
     { path: '', name: 'Overview', icon: <FaTachometerAlt /> },
     { path: 'attendance', name: 'Attendance', icon: <FaCalendarAlt /> },
@@ -23,6 +24,11 @@ const EmployeeDashboard = () => {
     { path: 'payroll', name: 'Payroll', icon: <FaMoneyBillWave /> },
     { path: 'reports', name: 'Reports', icon: <FaChartBar /> },
   ];
+
+  const handleLogout = () =>{
+    localStorage.clear();
+    navigate('/')
+  }
 
   return (
     <div className="dashboard">
@@ -43,10 +49,10 @@ const EmployeeDashboard = () => {
           ))}
         </nav>
         <div className="sidebar-footer">
-          <NavLink to="/" className="logout-btn">
+          <div onClick={handleLogout} className="logout-btn">
             <FaSignOutAlt />
             <span>Logout</span>
-          </NavLink>
+          </div>
         </div>
       </aside>
 

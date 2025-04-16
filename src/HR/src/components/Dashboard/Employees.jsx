@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaSearch, FaPlus, FaEdit, FaTrash } from 'react-icons/fa';
+import axios from 'axios';
+import { BASE_URL } from '../../../../utils/constants';
 import './Employees.css';
+
 
 const initialEmployees = [
   { id: 1, name: 'Alice Johnson', position: 'Software Engineer', department: 'Engineering' },
@@ -14,6 +17,23 @@ const Employees = () => {
   const [editMode, setEditMode] = useState(false);
   const [formData, setFormData] = useState({ id: '', name: '', position: '', department: '' });
   const [searchTerm, setSearchTerm] = useState('');
+
+  useEffect(()=>{
+    const getData = async () =>{
+      const token = localStorage.getItem('token')
+      try {
+        const response = await axios.get(`${BASE_URL}/users/emp`, {
+          headers:{
+            Authorization: `Bearer ${token}`
+        }});
+        console.log('response', response);
+        setEmployees(response.data)
+      } catch (err) {
+        console.log('error fetching emp: ', err)
+      }
+    }
+    getData();
+  },[])
 
   const handleAddClick = () => {
     setEditMode(false);
@@ -127,8 +147,8 @@ const Employees = () => {
           <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Position</th>
-            <th>Department</th>
+            {/* <th>Position</th>
+            <th>Department</th> */}
             <th>Actions</th>
           </tr>
         </thead>
@@ -137,8 +157,8 @@ const Employees = () => {
             <tr key={employee.id}>
               <td>{employee.id}</td>
               <td>{employee.name}</td>
-              <td>{employee.position}</td>
-              <td>{employee.department}</td>
+              {/* <td>{employee.position}</td>
+              <td>{employee.department}</td> */}
               <td>
                 <button className="edit-btn" onClick={() => handleEditClick(employee)}>
                   <FaEdit />

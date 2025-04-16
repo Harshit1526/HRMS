@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom'; 
 import './LoginSignup.css';
 import user_icon from '../HR/src/components/Assests/person.png';
 import email_icon from '../HR/src/components/Assests/email.png';
 import password_icon from '../HR/src/components/Assests/password.png';
+import axios from 'axios';
+import {BASE_URL} from '../utils/constants'
 
 const LoginSignup = () => {
     const [isLogin, setIsLogin] = useState(true);
@@ -13,6 +15,21 @@ const LoginSignup = () => {
     const [errors, setErrors] = useState({});
     const [successMessage, setSuccessMessage] = useState('');
     const navigate = useNavigate();
+
+
+    useEffect(()=>{
+        const token = localStorage.getItem('token');
+        const role = localStorage.getItem('role');
+        if(token){
+            if (role === "Admin") {
+                navigate("/admin_dashboard/");
+            } else if (role === "Employee") {
+                navigate("/employee_dashboard");
+            } else if (role === "HR Manager") {
+                navigate("/hr_dashboard");
+            }
+        }
+    },[])
 
     const validateForm = () => {
         const errors = {};
@@ -44,21 +61,44 @@ const LoginSignup = () => {
         setPassword('');
     };
 
-    const handleLogin = async () => {
+    const handleLogin = async (e) => {
+        e.preventDefault();
         const validationErrors = validateForm();
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
             return;
         }
 
-        navigate("/dashboard");
+        // navigate("/dashboard");
 
-
-
-        
+            try {
+                const { data } = await axios.post(`${BASE_URL}/auth/login`, { email, password });
+                // const { data } = await axios.post(`${BASE_URL}/auth/login`, { email, password });
+                localStorage.setItem("token", data.token);
+                localStorage.setItem("role", data?.user?.role);
+                localStorage.setItem("email", data?.user?.email);
+                localStorage.setItem("name", data?.user?.name);
+                localStorage.setItem("id", data?.user?.id);
+    
+                // login(data.user);
+    
+                console.log('data',data)
+                if (data.user.role === "Admin") {
+                    navigate("/admin_dashboard/");
+                } else if (data.user.role === "Employee") {
+                    navigate("/employee_dashboard");
+                } else if (data.user.role === "HR Manager") {
+                    navigate("/hr_dashboard");
+                } else {
+                    alert('Role not found')
+                }
+            } catch (err) {
+                // setError("Invalid email or password");
+                console.log('error: ', err)
+            }
         // Simulate successful login
         // if user validte navigate to dashboard
-        navigate("/hr_dashboard"); 
+        // navigate("/hr_dashboard"); 
         // setSuccessMessage('Login successful! You can now proceed to the Dashboard.');
 
         setErrors({});

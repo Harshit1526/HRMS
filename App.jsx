@@ -15,10 +15,11 @@ import LeaveManagement from './src/Employee/src/Dashboard/components/LeaveManage
 import Payroll from './src/Employee/src/Dashboard/components/Payroll.jsx';
 import Reports from './src/Employee/src/Dashboard/components/Reports.jsx';
 
+
 function App() {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <Router>
         <Routes>
           <Route path="/" element={<LoginSignup />} />

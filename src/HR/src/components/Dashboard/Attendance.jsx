@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { BASE_URL } from '../../../../utils/constants';
 import './Attendance.css';
 
 const initialAttendance = [
@@ -8,7 +10,7 @@ const initialAttendance = [
 ];
 
 const Attendance = () => {
-  const [attendanceRecords, setAttendanceRecords] = useState(initialAttendance);
+  const [attendanceRecords, setAttendanceRecords] = useState([]);
   const [selectedEmployee, setSelectedEmployee] = useState('');
   const [status, setStatus] = useState('Present');
   const [checkIn, setCheckIn] = useState({ time: '09:00', period: 'AM' });
@@ -29,6 +31,26 @@ const Attendance = () => {
     setAttendanceRecords([...attendanceRecords, newRecord]);
     resetForm();
   };
+
+  useEffect(() => {
+      const getData = async () =>{
+        const token = localStorage.getItem('token')
+        try {
+          const response = await axios.get(`${BASE_URL}/attendance/todayAllEmployee`,{
+            headers:{
+              Authorization: `Bearer ${token}`
+            }
+          });
+  
+          console.log('attendace response', response);
+          setAttendanceRecords(response.data)
+        } catch (err) {
+          console.log('error fetching attendance:', err)
+        }
+      } 
+      getData();
+    }, [])
+
 
   const handleEmployeeChange = (e) => {
     setSelectedEmployee(e.target.value);
@@ -132,7 +154,7 @@ const Attendance = () => {
             {attendanceRecords.map((record) => (
               <tr key={record.id}>
                 <td>{record.date}</td>
-                <td>{record.employeeName}</td>
+                <td>{record?.User?.name}</td>
                 <td className={`status ${record.status.toLowerCase()}`}>{record.status}</td>
                 <td>{record.checkIn}</td>
                 <td>{record.checkOut}</td>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, NavLink } from 'react-router-dom';
+import { Routes, Route, NavLink, useNavigate } from 'react-router-dom';
 import {
   FaUsers,
   FaCalendarAlt,
@@ -20,8 +20,10 @@ import Payroll from './Payroll';
 import Reports from './Reports';
 import Onboarding from './Onboarding';
 import Performance from './Performance';
+import LeaveStatusEdit from './LeaveStatusEdit'
 
 const Dashboard = () => {
+  const navigate = useNavigate();
   const navItems = [
     { path: '', name: 'Overview', icon: <FaTachometerAlt /> },
     { path: 'employees', name: 'Employees', icon: <FaUsers /> },
@@ -32,6 +34,11 @@ const Dashboard = () => {
     { path: 'performance', name: 'Performance', icon: <FaBell /> },
     { path: 'reports', name: 'Reports', icon: <FaChartBar /> },
   ];
+
+  const handleLogout = () =>{
+    localStorage.clear();
+    navigate('/');
+  }
 
   return (
     <div className="dashboard">
@@ -51,11 +58,11 @@ const Dashboard = () => {
             </NavLink>
           ))}
         </nav>
-        <div className="sidebar-footer">
-          <NavLink to="/" className="logout-btn">
+        <div onClick={handleLogout} className="sidebar-footer">
+          <div className="logout-btn">
             <FaSignOutAlt />
-            <span>Logout</span>
-          </NavLink>
+            <span  >Logout</span>
+          </div>
         </div>
       </aside>
       <main className="main-content">
@@ -65,6 +72,7 @@ const Dashboard = () => {
             <Route path="employees" element={<Employees />} />
             <Route path="attendance" element={<Attendance />} />
             <Route path="leave" element={<LeaveManagement />} />
+            <Route path="leaveStatusEdit" element={<LeaveStatusEdit />} />
             <Route path="payroll" element={<Payroll />} />
             <Route path="onboarding" element={<Onboarding />} />
             <Route path="performance" element={<Performance />} />

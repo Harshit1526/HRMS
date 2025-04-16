@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './LeaveManagement.css';
+import axios from 'axios';
+import { BASE_URL } from '../../../../utils/constants'
+import { FiEdit } from "react-icons/fi";
+import { useNavigate } from 'react-router-dom'
 
-const initialLeaveRequests = [
-  { employeeId: 'E001', employeeName: 'Alice Johnson', type: 'Sick Leave', startDate: '2024-09-01', endDate: '2024-09-03', status: 'Approved' },
-  { employeeId: 'E002', employeeName: 'Bob Smith', type: 'Annual Leave', startDate: '2024-09-05', endDate: '2024-09-10', status: 'Pending' },
-  { employeeId: 'E003', employeeName: 'Charlie Brown', type: 'Casual Leave', startDate: '2024-09-15', endDate: '2024-09-16', status: 'Rejected' },
-];
+// const initialLeaveRequests = [
+//   { employeeId: 'E001', employeeName: 'Alice Johnson', type: 'Sick Leave', startDate: '2024-09-01', endDate: '2024-09-03', status: 'Approved' },
+//   { employeeId: 'E002', employeeName: 'Bob Smith', type: 'Annual Leave', startDate: '2024-09-05', endDate: '2024-09-10', status: 'Pending' },
+//   { employeeId: 'E003', employeeName: 'Charlie Brown', type: 'Casual Leave', startDate: '2024-09-15', endDate: '2024-09-16', status: 'Rejected' },
+// ];
 
 const LeaveManagement = () => {
-  const [leaveRequests, setLeaveRequests] = useState(initialLeaveRequests);
+  const navigate = useNavigate();
+  const [leaveRequests, setLeaveRequests] = useState([{}]);
   const [formVisible, setFormVisible] = useState(false);
   const [newRequest, setNewRequest] = useState({
     employeeId: '',
@@ -18,6 +23,23 @@ const LeaveManagement = () => {
     endDate: '',
     status: 'Pending'
   });
+
+  useEffect(()=>{
+
+    const getData = async() =>{
+      const token = localStorage.getItem('token')
+        try {
+          const response = await axios.get(`${BASE_URL}/leaves/requests`, {headers:{
+            Authorization: `Bearer ${token}`
+          }});
+          console.log('response', response.data);
+          setLeaveRequests(response.data)
+        } catch (error) {
+          console.log("error while getting: ", error)
+        }
+    }
+    getData();
+  },[])
 
   const handleAddLeaveRequest = (e) => {
     e.preventDefault();
@@ -45,6 +67,11 @@ const LeaveManagement = () => {
   const toggleFormVisibility = () => {
     setFormVisible(!formVisible);
   };
+
+  const handleEdit = (data) =>{
+    console.log('data', data);
+    navigate('/hr_dashboard/leaveStatusEdit', {state: data})
+  }
 
   return (
     <div className="leave-management">
@@ -103,17 +130,19 @@ const LeaveManagement = () => {
               <th>Start Date</th>
               <th>End Date</th>
               <th>Status</th>
+              <th>Edit</th>
             </tr>
           </thead>
           <tbody>
             {leaveRequests.map((request) => (
-              <tr key={request.id}>
-                <td>{request.employeeId}</td>
-                <td>{request.employeeName}</td>
-                <td>{request.type}</td>
-                <td>{request.startDate}</td>
-                <td>{request.endDate}</td>
-                <td className={`status ${request.status.toLowerCase()}`}>{request.status}</td>
+              <tr key={request?.id}>
+                <td>{request?.employeeId}</td>
+                <td>{request?.User?.name}</td>
+                <td>{request?.reason}</td>
+                <td>{request?.startDate}</td>
+                <td>{request?.endDate}</td>
+                <td className={`status ${request?.status?.toLowerCase()}`}>{request?.status}</td>
+                <td><FiEdit onClick={() => handleEdit(request)} /></td>
               </tr>
             ))}
           </tbody>

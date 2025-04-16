@@ -7,7 +7,7 @@ import EmployeeDashboard from './src/Employee/src/Dashboard/components/EmployeeD
 import AdminDashboard from './src/Admin/src/Components/AdminDashboard.jsx';
 import ManageEmployees from './src/Admin/src/Components/ManageEmployees.jsx';
 import ManageAttendance from './src/Admin/src/Components/ManageAttendance.jsx';
-import Managepayroll from './src/Admin/src/Components/Managepayroll.jsx';
+import ManagePayroll from './src/Admin/src/Components/ManagePayroll.jsx';
 import ManageLeave from './src/Admin/src/Components/ManageLeaveRequests.jsx';
 import Report from './src/Admin/src/Components/Reports.jsx';
 import EmployeeAtendance from './src/Employee/src/Dashboard/components/Attendance.jsx';
@@ -28,7 +28,7 @@ function App() {
           <Route path="/admin_dashboard/*" element={<AdminDashboard />} />
           <Route path="/admin/employees" element={<ManageEmployees />} />
           <Route path="/admin/attendance" element={<ManageAttendance />} />
-          <Route path="/admin/payroll" element={<Managepayroll />} />
+          <Route path="/admin/payroll" element={<ManagePayroll />} />
           <Route path="/admin/leave" element={<ManageLeave />} />
           <Route path="/admin/reports" element={<Report />} />
 
